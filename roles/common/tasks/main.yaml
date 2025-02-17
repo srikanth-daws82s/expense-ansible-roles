@@ -1,0 +1,16 @@
+- name: remove existing directory
+  ansible.builtin.file:
+    path: "{{ APP_LOCATION }}"              # backend folder is /app and frontend folder is /usr/share/nginx/html
+    state: absent
+
+
+- name: create app directory
+  ansible.builtin.file:
+    path: "{{ APP_LOCATION }}"              
+    state: directory
+
+- name: download the code
+  ansible.builtin.unarchive:
+    src: "{{ }}"
+    dest: "{{ APP_LOCATION }}" 
+    remote_src: yes
